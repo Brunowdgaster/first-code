@@ -234,7 +234,7 @@ load "caminho com espaco     -> falhou (traço vazio)
 load "|caminho com espaco|   -> funcionou
 ```
 
-### 3. 98 segundos medidos para gerar 8 linhas, e a conclusão errada que isso gerou
+### 3. Um minuto e meio para gerar oito linhas, e a conclusão errada que isso gerou
 
 O Blockly traz **2302 arquivos** em `node_modules`. Com o repositório em
 `/mnt/c` — o sistema de arquivos do Windows visto pelo WSL2 — o custo medido
