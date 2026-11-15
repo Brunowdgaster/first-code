@@ -8,7 +8,7 @@ on:
 
 jobs:
   curriculo:
-    name: curriculo (Pascal, Logo, Scratch, Blockly)
+    name: curriculo (Pascal, Logo, Scratch, Blockly, Smalltalk)
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,28 @@ jobs:
           sudo apt-get install -y -qq fp-compiler ucblogo xvfb nodejs npm
           fpc -iV
           node --version
+
+      - name: Pharo 11 (Smalltalk, MIT)
+        run: |
+          # O Pharo nao tem pacote no Ubuntu, e nenhum Smalltalk utilizavel
+          # tem: gnu-smalltalk saiu do Debian, e squeak-vm + etoys instalam
+          # mas a imagem do Etoys ignora o .st passado.
+          #
+          # A VERSAO E FIXA no caminho `110`, pelo mesmo argumento do nixpkgs
+          # travado e do AutoHotkey 2.0.31 do p12: "stable" responde "o que
+          # roda hoje", nao "com o que isso foi verificado".
+          mkdir -p ~/pharo/vm ~/pharo/img
+          cd ~/pharo
+          curl -sS -L --retry 3 -o vm.zip             https://files.pharo.org/vm/pharo-spur64-headless/Linux-x86_64/stable.zip
+          curl -sS -L --retry 3 -o img.zip             https://files.pharo.org/image/110/latest-64.zip
+          unzip -q vm.zip -d vm
+          unzip -q img.zip -d img
+          # Falha ALTO se o binario ou a imagem nao apareceram. Sem isto, a
+          # suite reportaria "Pharo ausente" como falha de TESTE, e a causa
+          # real (download quebrado) ficaria escondida atras dela.
+          test -x ~/pharo/vm/pharo || { echo 'vm/pharo nao foi extraido'; exit 1; }
+          test -n "$(find ~/pharo/img -name '*.image' | head -1)"             || { echo 'nenhuma .image extraida'; exit 1; }
+          ~/pharo/vm/pharo "$(find ~/pharo/img -name '*.image' | head -1)"             eval '6 * 7' </dev/null
 
       - name: a suite, em modo exigente
         # P14_EXIGE=1 transforma "pulado" em FALHA: no CI, dependencia
