@@ -236,6 +236,91 @@ else
     fi
 fi
 
+# ---------------------------------------------------------------------------
+secao 'smalltalk/ — o objeto vivo, e o que a imagem removeu'
+
+# O Pharo nao tem pacote no Ubuntu: `gnu-smalltalk` saiu do Debian, e
+# `squeak-vm` + `etoys` instalam mas a imagem do Etoys ignora o .st. O Pharo e
+# instalado por download (livre, MIT) e registrado em AMBIENTE.md, no indice do
+# portfolio, junto com o comando de remocao.
+PHARO_DIR="${PHARO_DIR:-$HOME/pharo}"
+
+if [ ! -x "$PHARO_DIR/vm/pharo" ]; then
+    pula 'Pharo ausente: ver a mensagem de smalltalk/roda.sh para instalar'
+else
+    for n in 1 2 3 4 5; do
+        compara Smalltalk "$n" bash smalltalk/roda.sh "$n"
+    done
+
+    # As duas regras do arquivo .st, conferidas numa unica passagem que
+    # distingue CODIGO de PROSA.
+    #
+    # Separar os dois e necessario, e a primeira versao destes testes nao
+    # separava: ela usava `grep -q 'methodsFor:'` e FALHOU, porque o proprio
+    # comentario do licoes.st menciona `methodsFor:` para explicar por que nao
+    # o usa.
+    #
+    # Foi a terceira vez que esse padrao apareceu nesta sessao -- antes com
+    # `Option VBASupport` no p12 e com o separador de chunk aqui. A licao e que
+    # um teste sobre CODIGO precisa saber onde o codigo termina, e grep nao
+    # sabe.
+    #
+    # As duas regras:
+    #
+    #   1. nenhum separador de chunk dentro de comentario. O separador e
+    #      cortado ANTES de o codigo ser analisado, entao uma exclamacao num
+    #      comentario parte o comentario no meio, e o erro sai como 'Unknown
+    #      character' apontando para uma linha de prosa;
+    #
+    #   2. nenhum `methodsFor:` no codigo. Ele era o mecanismo classico do
+    #      formato chunk e o Pharo 11 o REMOVEU -- `compile:classified:` e a
+    #      substituta.
+    if python3 - <<'PY'
+import io
+import sys
+
+dentro = False
+bangs = []
+metodos = []
+
+texto = io.open('smalltalk/licoes.st', encoding='utf-8').read()
+
+for i, l in enumerate(texto.split('\n'), 1):
+    if dentro:
+        if '!' in l:
+            bangs.append(i)
+    else:
+        # Fora de comentario: a linha pode ABRIR um comentario no meio dela,
+        # e so o que vem antes da abertura e codigo.
+        codigo = l.split('"')[0] if '"' in l else l
+        if 'methodsFor:' in codigo:
+            metodos.append(i)
+    if l.count('"') % 2 == 1:
+        dentro = not dentro
+
+if bangs:
+    print('separador de chunk em comentario, linhas:', bangs, file=sys.stderr)
+if metodos:
+    print('methodsFor: no codigo, linhas:', metodos, file=sys.stderr)
+
+sys.exit(1 if (bangs or metodos) else 0)
+PY
+    then
+        passa 'o .st respeita as duas regras do formato chunk'
+    else
+        falha 'o .st viola uma das regras do formato chunk'
+    fi
+
+    # `--quit` no runner. Sem ele o `st` avalia o arquivo e MANTEM a imagem
+    # viva -- com stdout vazio, indistinguivel de travamento. A propria ajuda
+    # do subcomando avisa: "runs Pharo code stored in a file without quiting".
+    if grep -q 'st --quit' smalltalk/roda.sh; then
+        passa 'o runner passa --quit (sem ele a imagem não sai)'
+    else
+        falha 'sem --quit: o Pharo vai ficar vivo até o timeout'
+    fi
+fi
+
 printf '\n%s\n' '=============================================================='
 if [ "$PULADO" -gt 0 ]; then
     printf '  %s passaram, %s falharam, %s pulado(s)\n' \

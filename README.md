@@ -4,9 +4,8 @@ Um currículo de programação visual: **cinco lições** com uma progressão de
 conceitos, implementadas em **Pascal, Logo, Scratch e Blockly** — que têm de
 produzir **o mesmo traço de tartaruga**, byte a byte, verificado por script.
 
-> **Status:** 4 das 5 linguagens previstas, com **32 testes**. Pascal, Logo,
-> Scratch e Blockly estão completos. **Smalltalk está bloqueado** por uma
-> razão concreta, descrita em [Smalltalk](#smalltalk-o-que-falta-e-por-quê).
+> **Status:** **as 5 linguagens previstas**, com **39 testes**. Pascal, Logo,
+> Scratch, Blockly e Smalltalk estão completos e produzem traço idêntico.
 
 ## Por que isto não é enchimento de portfólio
 
@@ -49,6 +48,7 @@ professor. E em Blockly a economia é visível na contagem:
 | linguagem | como o traço sai | custo |
 |---|---|---|
 | **Pascal** | `writeln` em stdout | nenhum: é a referência |
+| **Smalltalk** | a classe escreve num `FileReference` | o Pharo não está no apt |
 | **Logo** | `openwrite`/`setwrite` para arquivo, sob `xvfb` | o build do Ubuntu é só gráfico |
 | **Scratch** | o `.sb3` é **gerado e interpretado** aqui | Scratch não tem linha de comando |
 | **Blockly** | o gerador de código emite o traço | `node_modules` tem de sair de `/mnt/c` |
@@ -121,6 +121,70 @@ concatenação de listas.
 Ver a mesma árvore produzir código imperativo e funcional é difícil de
 ensinar com palavras.
 
+### Smalltalk: o único em que o programa é um objeto vivo
+
+As outras quatro têm a mesma forma — escreve-se um arquivo, roda-se, vê-se a
+saída. Em Smalltalk a tartaruga é uma **classe**, e as lições são **métodos**
+dela.
+
+A diferença aparece na lição 5: a árvore recursiva precisa que a tartaruga
+volte ao ponto de divisão. Em Pascal isso é um procedimento mexendo em estado
+global; aqui é `self tras: tamanho`, e o estado pertence ao objeto. **Duas
+tartarugas poderiam desenhar ao mesmo tempo**, o que nas outras
+implementações exigiria reescrever tudo.
+
+E `4 timesRepeat: [ ... ]` é uma **mensagem enviada ao número 4**, não sintaxe
+de laço. `timesRepeat:` é um método de `Integer` escrito em Smalltalk, que o
+aluno pode abrir e ler — em Pascal, `for` é palavra reservada e não tem
+dentro.
+
+#### Quatro paredes, e três delas estavam na documentação
+
+**`gnu-smalltalk` não existe mais** no Ubuntu 26.04. E `squeak-vm` + `etoys`
+instalam, a VM sobe (`-version` responde), mas a imagem do Etoys **ignora** o
+`.st` passado. O motor usado é o **Pharo 11** — descendente vivo do
+Smalltalk-80, livre (MIT), instalado por download.
+
+**`eval` é só para uma linha.** A descrição do subcomando diz exatamente isso:
+*"Directly evaluates passed in one line scripts"*. Um programa de várias
+linhas dá erro de parse apontando para a última linha, o que parece defeito do
+código. O subcomando certo é `st`.
+
+**`methodsFor:` foi removido.** Era o mecanismo clássico do formato *chunk*, e
+o Pharo 11 responde `doesNotUnderstand`. Perguntei à própria imagem em vez de
+supor:
+
+```
+(Object respondsTo: #methodsFor:)          false
+(Object respondsTo: #compile:classified:)  true
+```
+
+**E `st` não sai sozinho.** A ajuda do subcomando avisa: *"runs Pharo code
+stored in a file **without quiting**"*. Sem `--quit`, o arquivo é avaliado,
+nada falha, e o processo fica vivo com stdout vazio — indistinguível de
+travamento. Foi o terceiro *timeout* desta integração, e o único cuja causa
+estava escrita na ajuda da ferramenta.
+
+#### E duas que foram culpa minha, do mesmo tipo
+
+No formato *chunk*, o separador é cortado **antes** de o código ser analisado.
+Então uma exclamação dentro de um **comentário** parte o comentário no meio — e
+o erro sai como `Unknown character` apontando para uma linha de prosa.
+
+Eu caí nisso **escrevendo um exemplo do formato dentro do comentário que
+explica o formato**. E depois caí de novo com aspas: aspas duplas delimitam
+comentário, então uma expressão entre aspas no meio da prosa fecha o
+comentário.
+
+Depois, tirei **todos** os separadores por segurança. Resultado: o arquivo
+virou **um chunk**, e como um chunk é compilado inteiro antes de executar, a
+classe `Tartaruga` ainda não existia quando o compilador leu a linha seguinte
+— vinte avisos de `Tartaruga is Undeclared`, e então travamento.
+
+> O separador não é decoração de formato antigo: ele significa *"compile e
+> execute até aqui antes de ler o resto"*. Um arquivo que define uma classe e
+> logo a usa **precisa** dele.
+
 ## Três armadilhas que custaram tempo, e o que cada uma ensinou
 
 ### 1. `pu` e `pd` são primitivas, e o Logo PERGUNTA em vez de abortar
@@ -170,7 +234,7 @@ load "caminho com espaco     -> falhou (traço vazio)
 load "|caminho com espaco|   -> funcionou
 ```
 
-### 3. 98 segundos para gerar 8 linhas, e a conclusão errada que isso gerou
+### 3. 98 segundos medidos para gerar 8 linhas, e a conclusão errada que isso gerou
 
 O Blockly traz **2302 arquivos** em `node_modules`. Com o repositório em
 `/mnt/c` — o sistema de arquivos do Windows visto pelo WSL2 — o custo medido
@@ -208,6 +272,7 @@ equivalentes:
 | linguagem | a árvore é | tamanho |
 |---|---|---|
 | **Logo** | recursão com duas chamadas | **9 linhas** |
+| **Smalltalk** | idem, com mensagem para si mesma | 9 linhas |
 | **Pascal** | idem, com tipos | 12 linhas |
 | **Scratch** | a expansão **plana** do traço | **75 blocos** |
 | **Blockly** | idem | 75 blocos |
@@ -227,33 +292,24 @@ ramifica não fica natural sem reintroduzir procedimento com parâmetro — isto
 > que ramifica). O currículo tem várias linguagens porque nenhuma cobre tudo,
 > e a lição 5 é onde isso fica **medido** em vez de opinado.
 
-## Smalltalk: o que falta, e por quê
-
-Smalltalk é a quinta linguagem prevista, e está **bloqueado** — não por
-dificuldade, mas por uma restrição de ambiente desta sessão.
-
-O que foi tentado, em ordem:
-
-| caminho | resultado |
-|---|---|
-| `gnu-smalltalk` no apt | **não existe** no Ubuntu 26.04 (removido do Debian) |
-| `squeak-vm` + `etoys` no apt | instalam, a VM sobe (`-version` responde), mas a imagem do Etoys **ignora** o `.st` passado e nada é avaliado |
-| VM direta, sob `xvfb` | idem: nenhuma saída, nenhum arquivo |
-| baixar Pharo ou o fonte do GNU Smalltalk | **bloqueado** pela política de rede desta sessão |
-
-O Pharo é o descendente vivo do Smalltalk-80, é livre (MIT), e roda *headless*
-com `pharo Pharo.image eval "..."` — que é exatamente o que este projeto
-precisa. Falta só poder baixá-lo.
-
-A ressalva fica escrita aqui em vez de escondida, e é a segunda do portfólio
-junto com o VBA do `p12-toolbelt`.
-
 ## Rodando
 
 ```bash
 sudo apt-get install -y fp-compiler ucblogo xvfb nodejs npm
+
+# Pharo (Smalltalk): livre, MIT, e não tem pacote no Ubuntu
+mkdir -p ~/pharo/vm ~/pharo/img && cd ~/pharo
+curl -L -o vm.zip  https://files.pharo.org/vm/pharo-spur64-headless/Linux-x86_64/stable.zip
+curl -L -o img.zip https://files.pharo.org/image/110/latest-64.zip
+unzip -q vm.zip -d vm && unzip -q img.zip -d img
+
 ./verifica.sh
 ```
+
+O Pharo é **autocontido**: nada vai para `/usr`, nada se registra no sistema.
+O registro de tudo o que o portfólio instalou, com os comandos de remoção,
+está em
+[AMBIENTE.md](https://github.com/Brunowdgaster/poliglota/blob/main/AMBIENTE.md).
 
 A suíte **pula** o que não está instalado em vez de falhar, e `P14_EXIGE=1`
 transforma todo "pulado" em falha — que é o que o CI liga, porque lá uma
