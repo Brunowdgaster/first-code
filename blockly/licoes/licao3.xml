@@ -1,0 +1,75 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="tartaruga_repita">
+    <field name="VEZES">3</field>
+    <statement name="CORPO">
+      <block type="tartaruga_frente">
+        <field name="N">80</field>
+        <next>
+          <block type="tartaruga_direita">
+            <field name="G">120</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="tartaruga_caneta">
+        <field name="ESTADO">PU</field>
+        <next>
+          <block type="tartaruga_frente">
+            <field name="N">120</field>
+            <next>
+              <block type="tartaruga_caneta">
+                <field name="ESTADO">PD</field>
+                <next>
+                  <block type="tartaruga_repita">
+                    <field name="VEZES">4</field>
+                    <statement name="CORPO">
+                      <block type="tartaruga_frente">
+                        <field name="N">80</field>
+                        <next>
+                          <block type="tartaruga_direita">
+                            <field name="G">90</field>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="tartaruga_caneta">
+                        <field name="ESTADO">PU</field>
+                        <next>
+                          <block type="tartaruga_frente">
+                            <field name="N">120</field>
+                            <next>
+                              <block type="tartaruga_caneta">
+                                <field name="ESTADO">PD</field>
+                                <next>
+                                  <block type="tartaruga_repita">
+                                    <field name="VEZES">6</field>
+                                    <statement name="CORPO">
+                                      <block type="tartaruga_frente">
+                                        <field name="N">80</field>
+                                        <next>
+                                          <block type="tartaruga_direita">
+                                            <field name="G">60</field>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

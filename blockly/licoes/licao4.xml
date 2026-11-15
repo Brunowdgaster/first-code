@@ -1,0 +1,100 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="tartaruga_frente">
+    <field name="N">100</field>
+    <next>
+      <block type="tartaruga_direita">
+        <field name="G">60</field>
+        <next>
+          <block type="tartaruga_frente">
+            <field name="N">90</field>
+            <next>
+              <block type="tartaruga_direita">
+                <field name="G">60</field>
+                <next>
+                  <block type="tartaruga_frente">
+                    <field name="N">80</field>
+                    <next>
+                      <block type="tartaruga_direita">
+                        <field name="G">60</field>
+                        <next>
+                          <block type="tartaruga_frente">
+                            <field name="N">70</field>
+                            <next>
+                              <block type="tartaruga_direita">
+                                <field name="G">60</field>
+                                <next>
+                                  <block type="tartaruga_frente">
+                                    <field name="N">60</field>
+                                    <next>
+                                      <block type="tartaruga_direita">
+                                        <field name="G">60</field>
+                                        <next>
+                                          <block type="tartaruga_frente">
+                                            <field name="N">50</field>
+                                            <next>
+                                              <block type="tartaruga_direita">
+                                                <field name="G">60</field>
+                                                <next>
+                                                  <block type="tartaruga_frente">
+                                                    <field name="N">40</field>
+                                                    <next>
+                                                      <block type="tartaruga_direita">
+                                                        <field name="G">60</field>
+                                                        <next>
+                                                          <block type="tartaruga_frente">
+                                                            <field name="N">30</field>
+                                                            <next>
+                                                              <block type="tartaruga_direita">
+                                                                <field name="G">60</field>
+                                                                <next>
+                                                                  <block type="tartaruga_frente">
+                                                                    <field name="N">20</field>
+                                                                    <next>
+                                                                      <block type="tartaruga_direita">
+                                                                        <field name="G">60</field>
+                                                                        <next>
+                                                                          <block type="tartaruga_frente">
+                                                                            <field name="N">10</field>
+                                                                            <next>
+                                                                              <block type="tartaruga_direita">
+                                                                                <field name="G">60</field>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

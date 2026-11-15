@@ -1,0 +1,40 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="tartaruga_frente">
+    <field name="N">100</field>
+    <next>
+      <block type="tartaruga_direita">
+        <field name="G">90</field>
+        <next>
+          <block type="tartaruga_frente">
+            <field name="N">100</field>
+            <next>
+              <block type="tartaruga_direita">
+                <field name="G">90</field>
+                <next>
+                  <block type="tartaruga_frente">
+                    <field name="N">100</field>
+                    <next>
+                      <block type="tartaruga_direita">
+                        <field name="G">90</field>
+                        <next>
+                          <block type="tartaruga_frente">
+                            <field name="N">100</field>
+                            <next>
+                              <block type="tartaruga_direita">
+                                <field name="G">90</field>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,205 @@
+; licoes.lg — as cinco licoes do curriculo, em Logo (UCBLogo 6.2.5).
+;
+; Este arquivo e Logo puro: ele define as cinco licoes e nada mais. A
+; mecanica de rodar sem interface -- display virtual e redirecionamento da
+; saida para arquivo -- fica em `logo/roda.sh`, para o conteudo nao ficar
+; misturado com encanamento.
+;
+; ## Por que o Logo esta aqui, e por que ele vem antes do Pascal no curriculo
+;
+; Papert projetou o Logo em 1967 com uma ideia precisa: a crianca nao aprende
+; geometria olhando, aprende SENDO a tartaruga. "Ande 100, vire 90" e um
+; comando que o corpo entende antes da cabeca, e a figura que aparece e a
+; prova imediata de que o programa estava certo ou errado.
+;
+; Isso resolve o problema pedagogico que nenhuma linguagem de proposito geral
+; resolve: o retorno. Num programa que imprime numeros, o aluno precisa
+; ACREDITAR que o resultado esta certo. Num desenho, ele ve.
+;
+; E a recursao -- que e o conceito mais dificil de ensinar em qualquer
+; linguagem -- fica geometrica: a arvore da licao 5 e um galho que se divide
+; em dois galhos menores, e isso e uma frase, nao uma pilha de chamadas.
+;
+; ## O que o Logo tem que Scratch e Blockly nao tem
+;
+; Texto. Soa como desvantagem e nao e: o aluno que escreveu `repeat 4 [fd 100
+; rt 90]` digitou uma estrutura, com colchetes que delimitam um corpo e um
+; numero que controla quantas vezes. Quando ele chegar numa linguagem de
+; verdade, isso nao e novo -- e so sintaxe diferente para a mesma ideia.
+;
+; Em Scratch, a mesma licao e um bloco encaixado em outro bloco. Funciona
+; melhor para quem ainda nao le fluentemente, e nao transfere tao direto.
+;
+; As duas coisas sao verdade ao mesmo tempo, e e por isso que o curriculo tem
+; as duas.
+
+; ---------------------------------------------------------------------------
+; A tartaruga.
+;
+; Ela NAO desenha: emite o traco, como nas outras tres implementacoes. O
+; UCBLogo tem `forward` de verdade, que desenharia na tela -- e usa-lo
+; tornaria esta implementacao incomparavel com as outras. Ver TRACO.md.
+;
+; `sentence "F :n` monta a lista [F 100], e `print` de uma lista imprime os
+; elementos separados por espaco e sem colchetes -- exatamente o formato do
+; traco.
+; ---------------------------------------------------------------------------
+
+to f :n
+  print (sentence "F :n)
+end
+
+to b :n
+  print (sentence "B :n)
+end
+
+to r :g
+  print (sentence "R :g)
+end
+
+to l :g
+  print (sentence "L :g)
+end
+
+; `canetacima` e `canetabaixo`, e NAO `pu` e `pd`.
+;
+; Essa foi a primeira versao, e ela pendurava o UCBLogo: `pu` e `pd` sao
+; PRIMITIVAS -- abreviacoes de `penup` e `pendown`. O Logo recusa a
+; redefinicao com
+;
+;     pu is already defined
+;     ?
+;
+; e o `?` e o prompt do REPL: ele nao aborta, ele PERGUNTA. Sob `xvfb-run`,
+; sem ninguem para digitar, o processo fica parado ate o timeout -- e o
+; sintoma visivel e "traco vazio depois de 90 segundos", que nao menciona
+; nome de procedimento em lugar nenhum.
+;
+; E a mensagem nao aparece em stdout: vai para a janela de texto do wx. Foi
+; preciso alguem ver o `?` na tela para a causa ficar obvia.
+;
+; Medido, para nao supor: `to f`, `to b`, `to r` e `to l` NAO colidem --
+; as primitivas sao `fd`, `bk`, `rt` e `lt`. So `pu` e `pd` colidem.
+;
+; A licao geral e a mesma da caixa de dialogo do AutoHotkey no p12-toolbelt:
+; ferramenta que PERGUNTA em vez de falhar e veneno em automacao, e a defesa
+; e nunca depender de que ela nao pergunte.
+to canetacima
+  print "PU
+end
+
+to canetabaixo
+  print "PD
+end
+
+; ---------------------------------------------------------------------------
+; LICAO 1 — sequencia
+;
+; Oito comandos, um por um. O aluno tem de sentir a repeticao no dedo antes de
+; receber o laco, senao o laco e palavra magica em vez de abreviacao.
+; ---------------------------------------------------------------------------
+
+to licao1
+  f 100
+  r 90
+  f 100
+  r 90
+  f 100
+  r 90
+  f 100
+  r 90
+end
+
+; ---------------------------------------------------------------------------
+; LICAO 2 — repeticao
+;
+; O traco desta licao e IDENTICO ao da licao 1, byte a byte, e a suite
+; verifica. A pergunta "isso faz a mesma coisa?" e respondida por um diff
+; vazio.
+;
+; `repeat n [ ... ]` e, provavelmente, a construcao mais bem desenhada para
+; ensinar laco que existe: o numero vem antes, o corpo esta entre colchetes, e
+; nao ha variavel de controle para explicar. Compare com o `for i := 1 to 4 do
+; begin ... end` do Pascal, que introduz indice, limite e bloco de uma vez.
+; ---------------------------------------------------------------------------
+
+to licao2
+  repeat 4 [f 100 r 90]
+end
+
+; ---------------------------------------------------------------------------
+; LICAO 3 — procedimento com parametro
+;
+; `quotient` e nao `/`: divisao INTEIRA. Em UCBLogo, `360 / 4` da 90 mas
+; `360 / 7` daria 51.42857, e o traco so tem inteiros -- entao a operacao
+; precisa ser a mesma do `div` do Pascal, ou as duas implementacoes
+; divergiriam no primeiro poligono que nao dividisse 360 exatamente.
+;
+; Os lados escolhidos (3, 4, 6) dividem 360 exatamente, entao a diferenca nao
+; apareceria neste curriculo. Usar `quotient` de todo jeito e o que impede a
+; divergencia de aparecer quando alguem acrescentar um poligono de 7 lados.
+; ---------------------------------------------------------------------------
+
+to poligono :lados :tamanho
+  repeat :lados [f :tamanho r quotient 360 :lados]
+end
+
+to licao3
+  poligono 3 80
+  canetacima
+  f 120
+  canetabaixo
+  poligono 4 80
+  canetacima
+  f 120
+  canetabaixo
+  poligono 6 80
+end
+
+; ---------------------------------------------------------------------------
+; LICAO 4 — recursao com parada
+;
+; `stop` sai do procedimento, e vem ANTES da primeira acao: e a forma que nao
+; executa nada no caso base. Por a condicao no fim produz um traco a mais, e o
+; traco esperado pega.
+; ---------------------------------------------------------------------------
+
+to espiral :passo
+  if :passo < 10 [stop]
+  f :passo
+  r 60
+  espiral :passo - 10
+end
+
+to licao4
+  espiral 100
+end
+
+; ---------------------------------------------------------------------------
+; LICAO 5 — recursao que ramifica
+;
+; Esta e a licao pela qual o Logo existe. O galho se divide em dois, cada um
+; se divide em dois, e o desenho que sai nao tem como ser escrito com
+; repeticao simples.
+;
+; O `b :tamanho` no fim e a parte que ninguem acerta de primeira: a tartaruga
+; precisa VOLTAR ao ponto de divisao antes do segundo galho, senao a arvore
+; sai torta. E estado mutavel global mordendo, e a licao e melhor por isso --
+; o aluno descobre que "onde a tartaruga esta" e uma variavel que todos os
+; procedimentos compartilham.
+; ---------------------------------------------------------------------------
+
+to arvore :tamanho
+  if :tamanho < 20 [stop]
+  f :tamanho
+  l 30
+  arvore :tamanho - 20
+  r 60
+  arvore :tamanho - 20
+  l 30
+  b :tamanho
+end
+
+to licao5
+  arvore 80
+end

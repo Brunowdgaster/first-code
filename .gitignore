@@ -1,0 +1,12 @@
+# node_modules e ARTEFATO: 2302 arquivos, reconstruivel do package-lock.json.
+#
+# E em /mnt/c ele e um problema MEDIDO: cada execucao do gerador custava 98s
+# contra 1,7s com as dependencias no sistema de arquivos do Linux. O
+# blockly/roda.sh instala num cache fora de /mnt/c, e a resolucao do Node so
+# chega la se NAO houver node_modules na arvore do script.
+node_modules/
+
+# Binario e objeto do Free Pascal
+pascal/bin_licoes
+pascal/*.o
+pascal/*.ppu

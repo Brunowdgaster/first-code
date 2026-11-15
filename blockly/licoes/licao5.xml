@@ -1,0 +1,375 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="tartaruga_frente">
+    <field name="N">80</field>
+    <next>
+      <block type="tartaruga_esquerda">
+        <field name="G">30</field>
+        <next>
+          <block type="tartaruga_frente">
+            <field name="N">60</field>
+            <next>
+              <block type="tartaruga_esquerda">
+                <field name="G">30</field>
+                <next>
+                  <block type="tartaruga_frente">
+                    <field name="N">40</field>
+                    <next>
+                      <block type="tartaruga_esquerda">
+                        <field name="G">30</field>
+                        <next>
+                          <block type="tartaruga_frente">
+                            <field name="N">20</field>
+                            <next>
+                              <block type="tartaruga_esquerda">
+                                <field name="G">30</field>
+                                <next>
+                                  <block type="tartaruga_direita">
+                                    <field name="G">60</field>
+                                    <next>
+                                      <block type="tartaruga_esquerda">
+                                        <field name="G">30</field>
+                                        <next>
+                                          <block type="tartaruga_tras">
+                                            <field name="N">20</field>
+                                            <next>
+                                              <block type="tartaruga_direita">
+                                                <field name="G">60</field>
+                                                <next>
+                                                  <block type="tartaruga_frente">
+                                                    <field name="N">20</field>
+                                                    <next>
+                                                      <block type="tartaruga_esquerda">
+                                                        <field name="G">30</field>
+                                                        <next>
+                                                          <block type="tartaruga_direita">
+                                                            <field name="G">60</field>
+                                                            <next>
+                                                              <block type="tartaruga_esquerda">
+                                                                <field name="G">30</field>
+                                                                <next>
+                                                                  <block type="tartaruga_tras">
+                                                                    <field name="N">20</field>
+                                                                    <next>
+                                                                      <block type="tartaruga_esquerda">
+                                                                        <field name="G">30</field>
+                                                                        <next>
+                                                                          <block type="tartaruga_tras">
+                                                                            <field name="N">40</field>
+                                                                            <next>
+                                                                              <block type="tartaruga_direita">
+                                                                                <field name="G">60</field>
+                                                                                <next>
+                                                                                  <block type="tartaruga_frente">
+                                                                                    <field name="N">40</field>
+                                                                                    <next>
+                                                                                      <block type="tartaruga_esquerda">
+                                                                                        <field name="G">30</field>
+                                                                                        <next>
+                                                                                          <block type="tartaruga_frente">
+                                                                                            <field name="N">20</field>
+                                                                                            <next>
+                                                                                              <block type="tartaruga_esquerda">
+                                                                                                <field name="G">30</field>
+                                                                                                <next>
+                                                                                                  <block type="tartaruga_direita">
+                                                                                                    <field name="G">60</field>
+                                                                                                    <next>
+                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                        <field name="G">30</field>
+                                                                                                        <next>
+                                                                                                          <block type="tartaruga_tras">
+                                                                                                            <field name="N">20</field>
+                                                                                                            <next>
+                                                                                                              <block type="tartaruga_direita">
+                                                                                                                <field name="G">60</field>
+                                                                                                                <next>
+                                                                                                                  <block type="tartaruga_frente">
+                                                                                                                    <field name="N">20</field>
+                                                                                                                    <next>
+                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                        <field name="G">30</field>
+                                                                                                                        <next>
+                                                                                                                          <block type="tartaruga_direita">
+                                                                                                                            <field name="G">60</field>
+                                                                                                                            <next>
+                                                                                                                              <block type="tartaruga_esquerda">
+                                                                                                                                <field name="G">30</field>
+                                                                                                                                <next>
+                                                                                                                                  <block type="tartaruga_tras">
+                                                                                                                                    <field name="N">20</field>
+                                                                                                                                    <next>
+                                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                                        <field name="G">30</field>
+                                                                                                                                        <next>
+                                                                                                                                          <block type="tartaruga_tras">
+                                                                                                                                            <field name="N">40</field>
+                                                                                                                                            <next>
+                                                                                                                                              <block type="tartaruga_esquerda">
+                                                                                                                                                <field name="G">30</field>
+                                                                                                                                                <next>
+                                                                                                                                                  <block type="tartaruga_tras">
+                                                                                                                                                    <field name="N">60</field>
+                                                                                                                                                    <next>
+                                                                                                                                                      <block type="tartaruga_direita">
+                                                                                                                                                        <field name="G">60</field>
+                                                                                                                                                        <next>
+                                                                                                                                                          <block type="tartaruga_frente">
+                                                                                                                                                            <field name="N">60</field>
+                                                                                                                                                            <next>
+                                                                                                                                                              <block type="tartaruga_esquerda">
+                                                                                                                                                                <field name="G">30</field>
+                                                                                                                                                                <next>
+                                                                                                                                                                  <block type="tartaruga_frente">
+                                                                                                                                                                    <field name="N">40</field>
+                                                                                                                                                                    <next>
+                                                                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                                                                        <field name="G">30</field>
+                                                                                                                                                                        <next>
+                                                                                                                                                                          <block type="tartaruga_frente">
+                                                                                                                                                                            <field name="N">20</field>
+                                                                                                                                                                            <next>
+                                                                                                                                                                              <block type="tartaruga_esquerda">
+                                                                                                                                                                                <field name="G">30</field>
+                                                                                                                                                                                <next>
+                                                                                                                                                                                  <block type="tartaruga_direita">
+                                                                                                                                                                                    <field name="G">60</field>
+                                                                                                                                                                                    <next>
+                                                                                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                                                                                        <field name="G">30</field>
+                                                                                                                                                                                        <next>
+                                                                                                                                                                                          <block type="tartaruga_tras">
+                                                                                                                                                                                            <field name="N">20</field>
+                                                                                                                                                                                            <next>
+                                                                                                                                                                                              <block type="tartaruga_direita">
+                                                                                                                                                                                                <field name="G">60</field>
+                                                                                                                                                                                                <next>
+                                                                                                                                                                                                  <block type="tartaruga_frente">
+                                                                                                                                                                                                    <field name="N">20</field>
+                                                                                                                                                                                                    <next>
+                                                                                                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                                                                                                        <field name="G">30</field>
+                                                                                                                                                                                                        <next>
+                                                                                                                                                                                                          <block type="tartaruga_direita">
+                                                                                                                                                                                                            <field name="G">60</field>
+                                                                                                                                                                                                            <next>
+                                                                                                                                                                                                              <block type="tartaruga_esquerda">
+                                                                                                                                                                                                                <field name="G">30</field>
+                                                                                                                                                                                                                <next>
+                                                                                                                                                                                                                  <block type="tartaruga_tras">
+                                                                                                                                                                                                                    <field name="N">20</field>
+                                                                                                                                                                                                                    <next>
+                                                                                                                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                                                                                                                        <field name="G">30</field>
+                                                                                                                                                                                                                        <next>
+                                                                                                                                                                                                                          <block type="tartaruga_tras">
+                                                                                                                                                                                                                            <field name="N">40</field>
+                                                                                                                                                                                                                            <next>
+                                                                                                                                                                                                                              <block type="tartaruga_direita">
+                                                                                                                                                                                                                                <field name="G">60</field>
+                                                                                                                                                                                                                                <next>
+                                                                                                                                                                                                                                  <block type="tartaruga_frente">
+                                                                                                                                                                                                                                    <field name="N">40</field>
+                                                                                                                                                                                                                                    <next>
+                                                                                                                                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                                                                                                                                        <field name="G">30</field>
+                                                                                                                                                                                                                                        <next>
+                                                                                                                                                                                                                                          <block type="tartaruga_frente">
+                                                                                                                                                                                                                                            <field name="N">20</field>
+                                                                                                                                                                                                                                            <next>
+                                                                                                                                                                                                                                              <block type="tartaruga_esquerda">
+                                                                                                                                                                                                                                                <field name="G">30</field>
+                                                                                                                                                                                                                                                <next>
+                                                                                                                                                                                                                                                  <block type="tartaruga_direita">
+                                                                                                                                                                                                                                                    <field name="G">60</field>
+                                                                                                                                                                                                                                                    <next>
+                                                                                                                                                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                                                                                                                                                        <field name="G">30</field>
+                                                                                                                                                                                                                                                        <next>
+                                                                                                                                                                                                                                                          <block type="tartaruga_tras">
+                                                                                                                                                                                                                                                            <field name="N">20</field>
+                                                                                                                                                                                                                                                            <next>
+                                                                                                                                                                                                                                                              <block type="tartaruga_direita">
+                                                                                                                                                                                                                                                                <field name="G">60</field>
+                                                                                                                                                                                                                                                                <next>
+                                                                                                                                                                                                                                                                  <block type="tartaruga_frente">
+                                                                                                                                                                                                                                                                    <field name="N">20</field>
+                                                                                                                                                                                                                                                                    <next>
+                                                                                                                                                                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                                                                                                                                                                        <field name="G">30</field>
+                                                                                                                                                                                                                                                                        <next>
+                                                                                                                                                                                                                                                                          <block type="tartaruga_direita">
+                                                                                                                                                                                                                                                                            <field name="G">60</field>
+                                                                                                                                                                                                                                                                            <next>
+                                                                                                                                                                                                                                                                              <block type="tartaruga_esquerda">
+                                                                                                                                                                                                                                                                                <field name="G">30</field>
+                                                                                                                                                                                                                                                                                <next>
+                                                                                                                                                                                                                                                                                  <block type="tartaruga_tras">
+                                                                                                                                                                                                                                                                                    <field name="N">20</field>
+                                                                                                                                                                                                                                                                                    <next>
+                                                                                                                                                                                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                                                                                                                                                                                        <field name="G">30</field>
+                                                                                                                                                                                                                                                                                        <next>
+                                                                                                                                                                                                                                                                                          <block type="tartaruga_tras">
+                                                                                                                                                                                                                                                                                            <field name="N">40</field>
+                                                                                                                                                                                                                                                                                            <next>
+                                                                                                                                                                                                                                                                                              <block type="tartaruga_esquerda">
+                                                                                                                                                                                                                                                                                                <field name="G">30</field>
+                                                                                                                                                                                                                                                                                                <next>
+                                                                                                                                                                                                                                                                                                  <block type="tartaruga_tras">
+                                                                                                                                                                                                                                                                                                    <field name="N">60</field>
+                                                                                                                                                                                                                                                                                                    <next>
+                                                                                                                                                                                                                                                                                                      <block type="tartaruga_esquerda">
+                                                                                                                                                                                                                                                                                                        <field name="G">30</field>
+                                                                                                                                                                                                                                                                                                        <next>
+                                                                                                                                                                                                                                                                                                          <block type="tartaruga_tras">
+                                                                                                                                                                                                                                                                                                            <field name="N">80</field>
+                                                                                                                                                                                                                                                                                                          </block>
+                                                                                                                                                                                                                                                                                                        </next>
+                                                                                                                                                                                                                                                                                                      </block>
+                                                                                                                                                                                                                                                                                                    </next>
+                                                                                                                                                                                                                                                                                                  </block>
+                                                                                                                                                                                                                                                                                                </next>
+                                                                                                                                                                                                                                                                                              </block>
+                                                                                                                                                                                                                                                                                            </next>
+                                                                                                                                                                                                                                                                                          </block>
+                                                                                                                                                                                                                                                                                        </next>
+                                                                                                                                                                                                                                                                                      </block>
+                                                                                                                                                                                                                                                                                    </next>
+                                                                                                                                                                                                                                                                                  </block>
+                                                                                                                                                                                                                                                                                </next>
+                                                                                                                                                                                                                                                                              </block>
+                                                                                                                                                                                                                                                                            </next>
+                                                                                                                                                                                                                                                                          </block>
+                                                                                                                                                                                                                                                                        </next>
+                                                                                                                                                                                                                                                                      </block>
+                                                                                                                                                                                                                                                                    </next>
+                                                                                                                                                                                                                                                                  </block>
+                                                                                                                                                                                                                                                                </next>
+                                                                                                                                                                                                                                                              </block>
+                                                                                                                                                                                                                                                            </next>
+                                                                                                                                                                                                                                                          </block>
+                                                                                                                                                                                                                                                        </next>
+                                                                                                                                                                                                                                                      </block>
+                                                                                                                                                                                                                                                    </next>
+                                                                                                                                                                                                                                                  </block>
+                                                                                                                                                                                                                                                </next>
+                                                                                                                                                                                                                                              </block>
+                                                                                                                                                                                                                                            </next>
+                                                                                                                                                                                                                                          </block>
+                                                                                                                                                                                                                                        </next>
+                                                                                                                                                                                                                                      </block>
+                                                                                                                                                                                                                                    </next>
+                                                                                                                                                                                                                                  </block>
+                                                                                                                                                                                                                                </next>
+                                                                                                                                                                                                                              </block>
+                                                                                                                                                                                                                            </next>
+                                                                                                                                                                                                                          </block>
+                                                                                                                                                                                                                        </next>
+                                                                                                                                                                                                                      </block>
+                                                                                                                                                                                                                    </next>
+                                                                                                                                                                                                                  </block>
+                                                                                                                                                                                                                </next>
+                                                                                                                                                                                                              </block>
+                                                                                                                                                                                                            </next>
+                                                                                                                                                                                                          </block>
+                                                                                                                                                                                                        </next>
+                                                                                                                                                                                                      </block>
+                                                                                                                                                                                                    </next>
+                                                                                                                                                                                                  </block>
+                                                                                                                                                                                                </next>
+                                                                                                                                                                                              </block>
+                                                                                                                                                                                            </next>
+                                                                                                                                                                                          </block>
+                                                                                                                                                                                        </next>
+                                                                                                                                                                                      </block>
+                                                                                                                                                                                    </next>
+                                                                                                                                                                                  </block>
+                                                                                                                                                                                </next>
+                                                                                                                                                                              </block>
+                                                                                                                                                                            </next>
+                                                                                                                                                                          </block>
+                                                                                                                                                                        </next>
+                                                                                                                                                                      </block>
+                                                                                                                                                                    </next>
+                                                                                                                                                                  </block>
+                                                                                                                                                                </next>
+                                                                                                                                                              </block>
+                                                                                                                                                            </next>
+                                                                                                                                                          </block>
+                                                                                                                                                        </next>
+                                                                                                                                                      </block>
+                                                                                                                                                    </next>
+                                                                                                                                                  </block>
+                                                                                                                                                </next>
+                                                                                                                                              </block>
+                                                                                                                                            </next>
+                                                                                                                                          </block>
+                                                                                                                                        </next>
+                                                                                                                                      </block>
+                                                                                                                                    </next>
+                                                                                                                                  </block>
+                                                                                                                                </next>
+                                                                                                                              </block>
+                                                                                                                            </next>
+                                                                                                                          </block>
+                                                                                                                        </next>
+                                                                                                                      </block>
+                                                                                                                    </next>
+                                                                                                                  </block>
+                                                                                                                </next>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

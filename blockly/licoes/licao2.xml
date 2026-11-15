@@ -1,0 +1,15 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="tartaruga_repita">
+    <field name="VEZES">4</field>
+    <statement name="CORPO">
+      <block type="tartaruga_frente">
+        <field name="N">100</field>
+        <next>
+          <block type="tartaruga_direita">
+            <field name="G">90</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

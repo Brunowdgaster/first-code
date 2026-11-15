@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  curriculo:
+    name: curriculo (Pascal, Logo, Scratch, Blockly)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: compiladores e interpretadores
+        run: |
+          sudo apt-get update -qq
+          # ucblogo precisa de xvfb: o pacote e build so grafico, e sem
+          # display ele nao escreve nada em stdout -- nem --help -- e sai
+          # com codigo 0. Ver o README.
+          sudo apt-get install -y -qq fp-compiler ucblogo xvfb nodejs npm
+          fpc -iV
+          node --version
+
+      - name: a suite, em modo exigente
+        # P14_EXIGE=1 transforma "pulado" em FALHA: no CI, dependencia
+        # ausente e defeito do ambiente, nao resultado.
+        env:
+          P14_EXIGE: '1'
+        run: ./verifica.sh
+
+      - name: os artefatos gerados estao em dia
+        # Os .sb3 e os XML de blocos sao COMMITADOS, porque sao o artefato
+        # que alguem abre no editor. Se os geradores mudarem e os arquivos
+        # nao forem regerados, o repositorio passa a mostrar uma coisa e
+        # verificar outra.
+        #
+        # A geracao e deterministica de proposito (ZIP_STORED, carimbo de
+        # tempo fixo), e e isso que torna este passo possivel.
+        run: |
+          python3 scratch/gera.py
+          python3 blockly/monta_licoes.py
+          git diff --exit-code -- scratch/ blockly/licoes/ \
+            || { echo 'artefatos desatualizados: rode os geradores e commite'; exit 1; }
